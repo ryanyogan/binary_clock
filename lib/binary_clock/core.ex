@@ -16,7 +16,7 @@ defmodule BinaryClock.Core do
     [
       clock.seconds |> padded_bits() |> Enum.reverse(),
       clock.hours |> padded_bits() |> Enum.reverse(),
-      clock.ampm |> padded_bits(),
+      clock.ampm |> padded_bits() |> Enum.reverse(),
       clock.minutes |> padded_bits()
     ]
     |> List.flatten()

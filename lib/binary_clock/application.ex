@@ -13,9 +13,7 @@ defmodule BinaryClock.Application do
 
     children =
       [
-        # Children for all targets
-        # Starts a worker by calling: BinaryClock.Worker.start_link(arg)
-        # {BinaryClock.Worker, arg},
+        {BinaryClock.Server, "US/Central"}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)
