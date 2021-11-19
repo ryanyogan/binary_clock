@@ -35,16 +35,14 @@ defmodule BinaryClock.MixProject do
       {:shoehorn, "~> 0.7.0"},
       {:ring_logger, "~> 0.8.1"},
       {:toolshed, "~> 0.2.13"},
+      {:circuits_spi, "~> 1.0.0"},
+      {:tzdata, "~> 1.1.1"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.11.3", targets: @all_targets},
       {:nerves_pack, "~> 0.5.0", targets: @all_targets},
 
       # Dependencies for specific targets
-      # NOTE: It's generally low risk and recommended to follow minor version
-      # bumps to Nerves systems. Since these include Linux kernel and Erlang
-      # version updates, please review their release notes in case
-      # changes to your application are needed.
       {:nerves_system_rpi, "~> 1.16.0", runtime: false, targets: :rpi},
       {:nerves_system_rpi0, "~> 1.16.0", runtime: false, targets: :rpi0},
       {:nerves_system_rpi2, "~> 1.16.0", runtime: false, targets: :rpi2},
@@ -60,8 +58,6 @@ defmodule BinaryClock.MixProject do
   def release do
     [
       overwrite: true,
-      # Erlang distribution is not started automatically.
-      # See https://hexdocs.pm/nerves_pack/readme.html#erlang-distribution
       cookie: "#{@app}_cookie",
       include_erts: &Nerves.Release.erts/0,
       steps: [&Nerves.Release.init/1, :assemble],
